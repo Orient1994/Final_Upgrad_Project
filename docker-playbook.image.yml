@@ -1,0 +1,11 @@
+---
+- hosts: all
+  become: true
+
+  tasks:
+  - name: build docker image using Node js
+    command: docker build -t node-app-project .
+    args:
+      chdir: /home/ansadmin/
+  - name: create container using node-app-project
+    command: docker run -d --name final-node-app-version  -p 5000:8081 node-app-project
